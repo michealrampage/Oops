@@ -1,0 +1,59 @@
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ArrayListIteration {
+    public static void main(String[] args) {
+        // Create three ArrayLists
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+        ArrayList<Integer> list3 = new ArrayList<>();
+
+        // Insert elements into ArrayLists
+        list1.add(20);
+        list1.add(30);
+        list1.add(40);
+
+        list2.add(20);
+        list2.add(30);
+        list2.add(40);
+
+        list3.add(20);
+        list3.add(30);
+        list3.add(40);
+
+        // Iterate using Iterator
+        System.out.println("Iterator Loop:");
+        iterateUsingIterator(list1);
+
+        // Iterate using Advanced For Loop
+        System.out.println("\nAdvanced For Loop:");
+        iterateUsingAdvancedForLoop(list2);
+
+        // Iterate using For Loop
+        System.out.println("\nFor Loop:");
+        iterateUsingForLoop(list3);
+    }
+
+    // Iterate using Iterator
+    private static void iterateUsingIterator(ArrayList<Integer> list) {
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+
+    // Iterate using Advanced For Loop
+    private static void iterateUsingAdvancedForLoop(ArrayList<Integer> list) {
+        for (int element : list) {
+            System.out.println(element);
+        }
+    }
+
+    // Iterate using For Loop
+    private static void iterateUsingForLoop(ArrayList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+    }
+}
