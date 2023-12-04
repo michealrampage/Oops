@@ -1,0 +1,50 @@
+You are tasked with creating a Java program that counts the number of unique words in a given text using a HashSet. 
+Requirements: 
+WordCounter Class: 
+•	Create a WordCounter class that includes the following: 
+•	A method countUniqueWords(String text) that takes a text as input and returns the count of unique words.
+•	 Use a HashSet to store unique words. 
+•	Consider a word as any sequence of characters separated by whitespace. 
+Main Application: 
+•	Implement a main application that demonstrates the functionality of the WordCounter class.
+•	 Allow the user to input a text string.
+•	 Use the WordCounter class to count and display the number of unique words in the input text.
+Sample Output :
+Enter a text string: This is a simple Java program. Java is powerful and simple.
+Number of unique words: 8
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+class WordCounter {
+    public int countUniqueWords(String text) {
+        Set<String> uniqueWords = new HashSet<>();
+        String[] words = text.split("\\s+");
+
+        for (String word : words) {
+            uniqueWords.add(word);
+        }
+
+        return uniqueWords.size();
+    }
+}
+
+public class MainApplication {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an instance of WordCounter class
+        WordCounter wordCounter = new WordCounter();
+
+        // Allow the user to input a text string
+        System.out.print("Enter a text string: ");
+        String inputText = scanner.nextLine();
+
+        // Use the WordCounter class to count and display the number of unique words
+        int uniqueWordCount = wordCounter.countUniqueWords(inputText);
+        System.out.println("Number of unique words: " + uniqueWordCount);
+
+        scanner.close();
+    }
+}
