@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+class Person {
+    String name;
+    int age;
+
+    // Parameterized constructor for Person
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Employee extends Person {
+    String designation;
+    double salary;
+
+    // Parameterized constructor for Employee
+    Employee(String name, int age, String designation, double salary) {
+        super(name, age); // Call the constructor of the superclass (Person)
+        this.designation = designation;
+        this.salary = salary;
+    }
+}
+
+public class EmployeeTest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an array to store information about 5 employees
+        Employee[] employees = new Employee[5];
+
+        // Input data for 5 employees
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Enter details for Employee " + (i + 1) + ":");
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Age: ");
+            int age = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+            System.out.print("Designation: ");
+            String designation = scanner.nextLine();
+            System.out.print("Salary: ");
+            double salary = scanner.nextDouble();
+            scanner.nextLine(); // Consume the newline character
+
+            employees[i] = new Employee(name, age, designation, salary);
+        }
+
+        // Display the names of employees with a salary greater than 5000
+        System.out.println("\nEmployees with salary greater than 5000:");
+        for (Employee employee : employees) {
+            if (employee.salary > 5000) {
+                System.out.println(employee.name);
+            }
+        }
+
+        scanner.close();
+    }
+}
