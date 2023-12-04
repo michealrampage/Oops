@@ -1,0 +1,141 @@
+// Account interface
+interface Account {
+    void deposit(double amount);
+    void withdraw(double amount);
+    void calculateInterest();
+    void viewBalance();
+}
+
+// SavingsAccount class implementing Account interface
+class SavingsAccount implements Account {
+    private double balance;
+    private double interestRate;
+
+    public SavingsAccount(double initialDeposit, double interestRate) {
+        this.balance = initialDeposit;
+        this.interestRate = interestRate;
+    }
+
+    @Override
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit to Savings Account: $" + amount);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdraw from Savings Account: $" + amount);
+        } else {
+            System.out.println("Insufficient funds in Savings Account.");
+        }
+    }
+
+    @Override
+    public void calculateInterest() {
+        double interest = balance * (interestRate / 100);
+        balance += interest;
+    }
+
+    @Override
+    public void viewBalance() {
+        System.out.println("Savings Account balance: $" + balance);
+    }
+
+    // Unique method for SavingsAccount
+    public void displayInterestRate() {
+        System.out.println("Interest rate: " + interestRate + "%");
+    }
+}
+
+// CurrentAccount class implementing Account interface
+class CurrentAccount implements Account {
+    private double balance;
+    private double overdraftLimit;
+
+    public CurrentAccount(double initialDeposit, double overdraftLimit) {
+        this.balance = initialDeposit;
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    @Override
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit to Current Account: $" + amount);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (balance + overdraftLimit >= amount) {
+            balance -= amount;
+            System.out.println("Withdraw from Current Account: $" + amount);
+        } else {
+            System.out.println("Withdrawal exceeds overdraft limit in Current Account.");
+        }
+    }
+
+    @Override
+    public void calculateInterest() {
+        // No interest calculation for CurrentAccount
+    }
+
+    @Override
+    public void viewBalance() {
+        System.out.println("Current Account balance: $" + balance);
+    }
+
+    // Unique method for CurrentAccount
+    public void displayOverdraftLimit() {
+        System.out.println("Overdraft limit: $" + overdraftLimit);
+    }
+}
+
+// Bank class
+class Bank {
+    private Account[] accounts;
+    private int numberOfAccounts;
+
+    public Bank(int maxAccounts) {
+        accounts = new Account[maxAccounts];
+        numberOfAccounts = 0;
+    }
+
+    public void addAccount(Account account) {
+        if (numberOfAccounts < accounts.length) {
+            accounts[numberOfAccounts++] = account;
+        } else {
+            System.out.println("Cannot add more accounts. Bank is full.");
+        }
+    }
+}
+
+public class MainBankApplication {
+    public static void main(String[] args) {
+        // Case 1: Create Savings Account
+        SavingsAccount savingsAccount = new SavingsAccount(1000.00, 1.25);
+        savingsAccount.displayInterestRate();
+
+        // Case 2: Create Current Account
+        CurrentAccount currentAccount = new CurrentAccount(5000.00, 1000.00);
+        currentAccount.displayOverdraftLimit();
+
+        // Case 3: Deposit to Accounts
+        savingsAccount.deposit(100);
+        currentAccount.deposit(500);
+
+        // Case 4: Withdraw from Accounts
+        savingsAccount.withdraw(150);
+
+        // Case 5: View Account Balances
+        savingsAccount.viewBalance();
+        currentAccount.viewBalance();
+
+        // Case 6: Apply Interest
+        savingsAccount.calculateInterest();
+        System.out.println("After applying interest on Savings Account for 1 year:");
+        savingsAccount.viewBalance();
+        currentAccount.viewBalance();
+    }
+}
+
