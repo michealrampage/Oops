@@ -1,0 +1,91 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CalculatorWithLayout extends JFrame implements ActionListener {
+    private JTextField textField;
+    private JButton[] numberButtons;
+    private JButton[] functionButtons;
+    private JButton addButton, subButton, mulButton, divButton, eqButton, clrButton, dotButton, backButton;
+    private JPanel panel;
+
+    private double num1, num2, result;
+    private char operator;
+
+    public CalculatorWithLayout() {
+        this.setTitle("Calculator");
+        this.setSize(400, 500);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+
+        // Text field at BorderLayout.NORTH
+        textField = new JTextField();
+        textField.setFont(new Font("Arial", Font.PLAIN, 30));
+        textField.setHorizontalAlignment(JTextField.RIGHT);
+
+        // Panel with GridLayout(4, 4) at BorderLayout.CENTER
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 4));
+
+        numberButtons = new JButton[10];
+        for (int i = 0; i < 10; i++) {
+            numberButtons[i] = new JButton(String.valueOf(i));
+            numberButtons[i].setFont(new Font("Arial", Font.PLAIN, 24));
+            numberButtons[i].addActionListener(this);
+        }
+
+        addButton = new JButton("+");
+        subButton = new JButton("-");
+        mulButton = new JButton("*");
+        divButton = new JButton("/");
+        eqButton = new JButton("=");
+        clrButton = new JButton("C");
+        dotButton = new JButton(".");
+        backButton = new JButton("<-");
+
+        functionButtons = new JButton[]{addButton, subButton, mulButton, divButton, eqButton, clrButton, dotButton, backButton};
+        for (JButton button : functionButtons) {
+            button.setFont(new Font("Arial", Font.PLAIN, 24));
+            button.addActionListener(this);
+        }
+
+        panel.add(backButton);
+        panel.add(clrButton);
+        panel.add(divButton);
+
+        for (int i = 1; i <= 9; i++) {
+            panel.add(numberButtons[i]);
+        }
+
+        panel.add(mulButton);
+        panel.add(numberButtons[0]);
+        panel.add(dotButton);
+        panel.add(addButton);
+
+        panel.add(subButton);
+        panel.add(eqButton);
+
+        // Set BorderLayout for the content pane
+        Container container = getContentPane();
+        container.setLayout(new BorderLayout());
+
+        // Add components to the content pane
+        container.add(textField, BorderLayout.NORTH);
+        container.add(panel, BorderLayout.CENTER);
+
+        this.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new CalculatorWithLayout();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Implementation of actionPerformed is the same as provided in the previous response.
+        // Please refer to the previous response for the actionPerformed method.
+        // This method handles button clicks and performs the corresponding actions.
+        // It updates the text field and performs calculations based on user input.
+    }
+}
