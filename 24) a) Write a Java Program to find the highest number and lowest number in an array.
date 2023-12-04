@@ -1,0 +1,59 @@
+public class FindMinMaxInArray {
+    public static void main(String[] args) {
+        int[] numbers = {5, 10, 3, 8, 15, 7, 2};
+
+        // Call the methods to find the highest and lowest numbers
+        int highestNumber = findHighestNumber(numbers);
+        int lowestNumber = findLowestNumber(numbers);
+
+        // Display the results
+        System.out.println("Highest Number: " + highestNumber);
+        System.out.println("Lowest Number: " + lowestNumber);
+    }
+
+    // Method to find the highest number in an array
+    private static int findHighestNumber(int[] array) {
+        int max = array[0];
+        for (int num : array) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+
+    // Method to find the lowest number in an array
+    private static int findLowestNumber(int[] array) {
+        int min = array[0];
+        for (int num : array) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        return min;
+    }
+}
+
+b)
+public class SumOfEvenNumbers {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        // Call the method to calculate the sum of even numbers
+        int sumOfEvenNumbers = calculateSumOfEvenNumbers(numbers);
+
+        // Display the result
+        System.out.println("Sum of Even Numbers: " + sumOfEvenNumbers);
+    }
+
+    // Method to calculate the sum of even numbers in an array
+    private static int calculateSumOfEvenNumbers(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            if (num % 2 == 0) {
+                sum += num;
+            }
+        }
+        return sum;
+    }
+}
