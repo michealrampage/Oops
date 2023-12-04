@@ -1,0 +1,111 @@
+A Java program that performs various operations on arrays. Your program should include the following functionalities: 
+Input: Prompt the user to enter the size of an array. Allow the user to input the elements of the array. Display: Display the entered array.
+ 1) Find and Display: Find and display the sum of all elements in the array. 
+2) Find and display the average of the elements.
+ 3) Find and display the maximum and minimum values in the array.
+ 4) Search: Prompt the user to enter a value to search for in the array. Display whether the value is present in the array and, if yes, display its index. 
+
+
+import java.util.Scanner;
+
+public class ArrayOperationsProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input: Prompt the user to enter the size of an array
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        // Allow the user to input the elements of the array
+        int[] array = new int[size];
+        System.out.println("Enter the elements of the array:");
+
+        for (int i = 0; i < size; i++) {
+            System.out.print("Element " + (i + 1) + ": ");
+            array[i] = scanner.nextInt();
+        }
+
+        // Display: Display the entered array
+        System.out.println("Entered array:");
+        displayArray(array);
+
+        // 1) Find and Display: Find and display the sum of all elements in the array
+        int sum = findSum(array);
+        System.out.println("Sum of array elements: " + sum);
+
+        // 2) Find and display the average of the elements
+        double average = findAverage(array);
+        System.out.println("Average of array elements: " + average);
+
+        // 3) Find and display the maximum and minimum values in the array
+        int max = findMax(array);
+        int min = findMin(array);
+        System.out.println("Maximum value in the array: " + max);
+        System.out.println("Minimum value in the array: " + min);
+
+        // 4) Search: Prompt the user to enter a value to search for in the array
+        System.out.print("Enter a value to search for: ");
+        int searchValue = scanner.nextInt();
+        int index = searchValueInArray(array, searchValue);
+
+        // Display whether the value is present in the array and its index
+        if (index != -1) {
+            System.out.println(searchValue + " is present in the array at index " + index);
+        } else {
+            System.out.println(searchValue + " is not present in the array.");
+        }
+
+        scanner.close();
+    }
+
+    private static void displayArray(int[] array) {
+        for (int element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+
+    private static int findSum(int[] array) {
+        int sum = 0;
+        for (int element : array) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    private static double findAverage(int[] array) {
+        int sum = findSum(array);
+        return (double) sum / array.length;
+    }
+
+    private static int findMax(int[] array) {
+        int max = array[0];
+        for (int element : array) {
+            if (element > max) {
+                max = element;
+            }
+        }
+        return max;
+    }
+
+    private static int findMin(int[] array) {
+        int min = array[0];
+        for (int element : array) {
+            if (element < min) {
+                min = element;
+            }
+        }
+        return min;
+    }
+
+    private static int searchValueInArray(int[] array, int searchValue) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == searchValue) {
+                return i;
+            }
+        }
+        return -1; // Value not found in the array
+    }
+}
+
