@@ -1,0 +1,60 @@
+
+// Abstract class 'Marks'
+abstract class Marks {
+    // Abstract method 'getPercentage'
+    abstract double getPercentage();
+}
+
+// Class 'A' inheriting from 'Marks'
+class A extends Marks {
+    // Marks for student A in three subjects
+    private double subject1, subject2, subject3;
+
+    // Constructor for student A
+    A(double subject1, double subject2, double subject3) {
+        this.subject1 = subject1;
+        this.subject2 = subject2;
+        this.subject3 = subject3;
+    }
+
+    // Implementation of abstract method 'getPercentage' for student A
+    @Override
+    double getPercentage() {
+        return (subject1 + subject2 + subject3) / 3.0;
+    }
+}
+
+// Class 'B' inheriting from 'Marks'
+class B extends Marks {
+    // Marks for student B in four subjects
+    private double subject1, subject2, subject3, subject4;
+
+    // Constructor for student B
+    B(double subject1, double subject2, double subject3, double subject4) {
+        this.subject1 = subject1;
+        this.subject2 = subject2;
+        this.subject3 = subject3;
+        this.subject4 = subject4;
+    }
+
+    // Implementation of abstract method 'getPercentage' for student B
+    @Override
+    double getPercentage() {
+        return (subject1 + subject2 + subject3 + subject4) / 4.0;
+    }
+}
+
+// Main class
+public class PercentageCalculation {
+    public static void main(String[] args) {
+        // Creating an object for student A
+        A studentA = new A(80, 85, 90);
+
+        // Creating an object for student B
+        B studentB = new B(75, 85, 90, 95);
+
+        // Printing the percentage of marks for both students
+        System.out.println("Percentage of marks for Student A: " + studentA.getPercentage() + "%");
+        System.out.println("Percentage of marks for Student B: " + studentB.getPercentage() + "%");
+    }
+}
