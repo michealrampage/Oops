@@ -1,0 +1,67 @@
+11)
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
+public class ArrayListOperations {
+    public static void main(String[] args) {
+        // a. Create and traverse ArrayList using for-loop, iterator, and advance for-loop
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(10);
+        arrayList.add(20);
+        arrayList.add(30);
+
+        // Using for-loop
+        System.out.println("Using for-loop:");
+        for (int i = 0; i < arrayList.size(); i++) {
+            System.out.println(arrayList.get(i));
+        }
+
+        // Using iterator
+        System.out.println("\nUsing iterator:");
+        Iterator<Integer> iterator = arrayList.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        // Using advance for-loop (Java 5 and later)
+        System.out.println("\nUsing advance for-loop:");
+        for (int element : arrayList) {
+            System.out.println(element);
+        }
+
+        // b. Check if an element exists in ArrayList
+        int elementToCheck = 20;
+        System.out.println("\nChecking if " + elementToCheck + " exists in ArrayList: " + arrayList.contains(elementToCheck));
+
+        // c. Add element at a particular index
+        int indexToAdd = 1;
+        int elementToAdd = 25;
+        arrayList.add(indexToAdd, elementToAdd);
+        System.out.println("\nArrayList after adding " + elementToAdd + " at index " + indexToAdd + ": " + arrayList);
+
+        // d. Remove element at a particular index
+        int indexToRemove = 2;
+        arrayList.remove(indexToRemove);
+        System.out.println("\nArrayList after removing element at index " + indexToRemove + ": " + arrayList);
+
+        // e. Sort ArrayList
+        Collections.sort(arrayList);
+        System.out.println("\nArrayList after sorting: " + arrayList);
+
+        // f. Reverse elements in ArrayList
+        Collections.reverse(arrayList);
+        System.out.println("\nArrayList after reversing: " + arrayList);
+
+        // g. Compare two ArrayLists
+        ArrayList<Integer> arrayList2 = new ArrayList<>(arrayList);
+        System.out.println("\nComparing two ArrayLists: " + arrayList.equals(arrayList2));
+
+        // h. Find first and last occurrence of a repeated element
+        int repeatedElement = 20;
+        int firstIndex = arrayList.indexOf(repeatedElement);
+        int lastIndex = arrayList.lastIndexOf(repeatedElement);
+        System.out.println("\nFirst occurrence of " + repeatedElement + ": " + firstIndex);
+        System.out.println("Last occurrence of " + repeatedElement + ": " + lastIndex);
+    }
+}
