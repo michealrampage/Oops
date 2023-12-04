@@ -1,0 +1,113 @@
+a. Check that given number is Armstrong or not.Eg-153=13+53+33=1+225+27=153
+b. Write a Java program to check whether two strings are anagram or not?   RACE and CARE are anagram strings.
+c. Take two DOB in string format from user .Compare it and display the messages as “Younger”, ”Elder” or “Same age”.
+
+a) Check if a given number is Armstrong or not:
+import java.util.Scanner;
+
+public class ArmstrongNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        if (isArmstrong(number)) {
+            System.out.println(number + " is an Armstrong number.");
+        } else {
+            System.out.println(number + " is not an Armstrong number.");
+        }
+
+        scanner.close();
+    }
+
+    // Function to check if a number is Armstrong
+    private static boolean isArmstrong(int num) {
+        int originalNum = num;
+        int sum = 0;
+        int digits = (int) Math.log10(num) + 1;
+
+        while (num > 0) {
+            int digit = num % 10;
+            sum += Math.pow(digit, digits);
+            num /= 10;
+        }
+
+        return sum == originalNum;
+    }
+}
+
+b) Check whether two strings are anagrams or not:
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class AnagramCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first string: ");
+        String str1 = scanner.nextLine().toLowerCase();
+
+        System.out.print("Enter the second string: ");
+        String str2 = scanner.nextLine().toLowerCase();
+
+        if (areAnagrams(str1, str2)) {
+            System.out.println("The strings are anagrams.");
+        } else {
+            System.out.println("The strings are not anagrams.");
+        }
+
+        scanner.close();
+    }
+
+    // Function to check if two strings are anagrams
+    private static boolean areAnagrams(String str1, String str2) {
+        char[] charArray1 = str1.toCharArray();
+        char[] charArray2 = str2.toCharArray();
+
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+
+        return Arrays.equals(charArray1, charArray2);
+    }
+}
+
+c) Compare two dates of birth (DOB) in string format:
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class CompareDOB {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first DOB (yyyy-MM-dd): ");
+        String dobStr1 = scanner.next();
+
+        System.out.print("Enter the second DOB (yyyy-MM-dd): ");
+        String dobStr2 = scanner.next();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date date1 = sdf.parse(dobStr1);
+            Date date2 = sdf.parse(dobStr2);
+
+            int comparison = date1.compareTo(date2);
+
+            if (comparison < 0) {
+                System.out.println("Younger");
+            } else if (comparison > 0) {
+                System.out.println("Elder");
+            } else {
+                System.out.println("Same age");
+            }
+
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter dates in the format yyyy-MM-dd.");
+        }
+
+        scanner.close();
+    }
+}
