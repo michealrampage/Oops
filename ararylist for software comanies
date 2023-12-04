@@ -1,0 +1,51 @@
+/*Create a arraylist for software companies [Google, Apple, Microsoft, Amazon, Facebook]  and Perform following operations on Arraylist :
+1.	Add a new software company name in the above arraylist- CapGemini, and display the output.
+2.	Replace the 3rd company from an array list with a new company name and display the output.
+3.	Delete the  4th company from the array list and display the arraylist
+4.	 Add sub arraylist in the above arraylist-[Walmart,Cognizant,HSBC] and display the output.
+5.	Search that given company name is exist in arrayList or not.
+*/
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class SoftwareCompaniesArrayList {
+    public static void main(String[] args) {
+        // 1. Create an ArrayList for software companies
+        ArrayList<String> softwareCompanies = new ArrayList<>(Arrays.asList("Google", "Apple", "Microsoft", "Amazon", "Facebook"));
+
+        // 2. Add a new software company name - CapGemini
+        softwareCompanies.add("CapGemini");
+        System.out.println("1. Added a new software company - CapGemini: " + softwareCompanies);
+
+        // 3. Replace the 3rd company with a new company name
+        if (softwareCompanies.size() >= 3) {
+            softwareCompanies.set(2, "Oracle");
+            System.out.println("2. Replaced the 3rd company with Oracle: " + softwareCompanies);
+        } else {
+            System.out.println("Not enough companies to replace the 3rd one.");
+        }
+
+        // 4. Delete the 4th company from the array list
+        if (softwareCompanies.size() >= 4) {
+            softwareCompanies.remove(3);
+            System.out.println("3. Deleted the 4th company: " + softwareCompanies);
+        } else {
+            System.out.println("Not enough companies to delete the 4th one.");
+        }
+
+        // 5. Add sub ArrayList in the above ArrayList
+        ArrayList<String> subCompanies = new ArrayList<>(Arrays.asList("Walmart", "Cognizant", "HSBC"));
+        softwareCompanies.addAll(subCompanies);
+        System.out.println("4. Added sub ArrayList: " + softwareCompanies);
+
+        // 6. Search if a given company name exists in the ArrayList
+        String searchCompany = "Microsoft";
+        if (softwareCompanies.contains(searchCompany)) {
+            System.out.println("5. The company " + searchCompany + " exists in the ArrayList.");
+        } else {
+            System.out.println("5. The company " + searchCompany + " does not exist in the ArrayList.");
+        }
+    }
+}
