@@ -1,0 +1,63 @@
+Write a java program that includes functionalities such as
+ 1) input string,
+ 2) Displaying the length,
+ 3) Finding and displaying the uppercase and lowercase versions,
+ 4) Checking if the string is a palindrome, 
+5) Counting the occurrences of a specific character. and 6) string concatenation.
+
+import java.util.Scanner;
+
+public class StringManipulationProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 1) Input string
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        // 2) Displaying the length
+        int length = inputString.length();
+        System.out.println("Length of the string: " + length);
+
+        // 3) Finding and displaying the uppercase and lowercase versions
+        String uppercaseVersion = inputString.toUpperCase();
+        String lowercaseVersion = inputString.toLowerCase();
+        System.out.println("Uppercase version: " + uppercaseVersion);
+        System.out.println("Lowercase version: " + lowercaseVersion);
+
+        // 4) Checking if the string is a palindrome
+        boolean isPalindrome = checkPalindrome(inputString);
+        System.out.println("Is palindrome: " + isPalindrome);
+
+        // 5) Counting the occurrences of a specific character
+        System.out.print("Enter a character to count: ");
+        char charToCount = scanner.next().charAt(0);
+        int charCount = countOccurrences(inputString, charToCount);
+        System.out.println("Occurrences of '" + charToCount + "': " + charCount);
+
+        // 6) String concatenation
+        System.out.print("Enter another string for concatenation: ");
+        String secondString = scanner.next();
+        String concatenatedString = inputString.concat(secondString);
+        System.out.println("Concatenated string: " + concatenatedString);
+
+        scanner.close();
+    }
+
+    private static boolean checkPalindrome(String str) {
+        String reversedString = new StringBuilder(str).reverse().toString();
+        return str.equals(reversedString);
+    }
+
+    private static int countOccurrences(String str, char ch) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
