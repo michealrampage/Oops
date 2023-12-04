@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+public class ListOperations {
+
+    // a. Remove duplicates from ArrayList
+    public static ArrayList<Integer> removeDuplicates(List<Integer> inputList) {
+        Set<Integer> uniqueSet = new LinkedHashSet<>(inputList);
+        return new ArrayList<>(uniqueSet);
+    }
+
+    // b. Concatenate lists in reverse order
+    public static List<Object> concatenateLists(List<Object> listOne, List<Object> listTwo) {
+        List<Object> concatenatedList = new ArrayList<>(listOne);
+        for (int i = listTwo.size() - 1; i >= 0; i--) {
+            concatenatedList.add(listTwo.get(i));
+        }
+        return concatenatedList;
+    }
+
+    public static void main(String[] args) {
+        // Test case for removing duplicates
+        List<Integer> inputList = Arrays.asList(10, 20, 10, 15, 40, 15, 40);
+        ArrayList<Integer> uniqueList = removeDuplicates(inputList);
+        System.out.println("Input List: " + inputList);
+        System.out.println("List with Duplicates Removed: " + uniqueList);
+
+        System.out.println("\n------------------------\n");
+
+        // Test case for concatenating lists in reverse order
+        List<Object> listOne = Arrays.asList("Hello", 102, 200.8, 25);
+        List<Object> listTwo = Arrays.asList(150, 40.8, "welcome", 'A');
+        List<Object> concatenatedList = concatenateLists(listOne, listTwo);
+        System.out.println("List One: " + listOne);
+        System.out.println("List Two: " + listTwo);
+        System.out.println("Concatenated List: " + concatenatedList);
+    }
+}
