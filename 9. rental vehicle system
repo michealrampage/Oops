@@ -1,0 +1,193 @@
+You are tasked with developing a simple Vehicle Rental System in Java. The system should allow users to rent different types of vehicles, such as cars and bicycles. Implement an class called Vehicle to represent the common attributes and behaviors of all vehicles. Then, create two subclasses, Car and Bicycle, that inherit from the Vehicle class.
+Requirement:
+Vehicle Class: Include the following attributes: 
+•	id (unique identifier for each vehicle) 
+•	brand (the brand or make of the vehicle) 
+•	rentalRate (the cost per hour for renting the vehicle) 
+Include the following methods: 
+•	displayDetails() (display the details of the vehicle)
+•	 calculateRentalCost(int hours) (calculate the total rental cost based on the rental rate and the number of hours) 
+
+Car Class: 
+•	Extend the Vehicle class. Include an additional attribute: numSeats (the number of seats in the car) Override the displayDetails() method to include car-specific details. 
+•	Bicycle Class:
+•	 Extend the Vehicle class. Include an additional attribute: type (the type of bicycle, e.g., mountain bike, road bike) 
+•	Override the displayDetails() method to include bicycle-specific details. 
+•	Main Application:
+•	 Implement a main application that demonstrates the functionality of the system. 
+•	Allow users to: 
+o	Add new cars and bicycles to the system with their details. 
+o	Display the details of all available vehicles. 
+o	Rent a vehicle by specifying the vehicle ID and the number of hours. 
+o	Display the rental details, including the total cost. 
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Vehicle {
+    private static int nextId = 1;
+
+    protected int id;
+    protected String brand;
+    protected double rentalRate;
+
+    public Vehicle(String brand, double rentalRate) {
+        this.id = nextId++;
+        this.brand = brand;
+        this.rentalRate = rentalRate;
+    }
+
+    public void displayDetails() {
+        System.out.println("Vehicle ID: " + id);
+        System.out.println("Brand: " + brand);
+        System.out.println("Rental Rate: $" + rentalRate + " per hour");
+    }
+
+    public double calculateRentalCost(int hours) {
+        return rentalRate * hours;
+    }
+}
+
+class Car extends Vehicle {
+    private int numSeats;
+
+    public Car(String brand, double rentalRate, int numSeats) {
+        super(brand, rentalRate);
+        this.numSeats = numSeats;
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Number of Seats: " + numSeats);
+    }
+}
+
+class Bicycle extends Vehicle {
+    private String type;
+
+    public Bicycle(String brand, double rentalRate, String type) {
+        super(brand, rentalRate);
+        this.type = type;
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Type: " + type);
+    }
+}
+
+public class VehicleRentalSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+
+        while (true) {
+            System.out.println("1. Add new Car");
+            System.out.println("2. Add new Bicycle");
+            System.out.println("3. Display details of all available vehicles");
+            System.out.println("4. Rent a vehicle");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    addNewCar(scanner, vehicles);
+                    break;
+                case 2:
+                    addNewBicycle(scanner, vehicles);
+                    break;
+                case 3:
+                    displayAllVehicles(vehicles);
+                    break;
+                case 4:
+                    rentVehicle(scanner, vehicles);
+                    break;
+                case 5:
+                    System.out.println("Exiting the Vehicle Rental System. Goodbye!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+    private static void addNewCar(Scanner scanner, ArrayList<Vehicle> vehicles) {
+        System.out.print("Enter Car brand: ");
+        String brand = scanner.next();
+        System.out.print("Enter Rental Rate for Car per hour: ");
+        double rentalRate = scanner.nextDouble();
+        System.out.print("Enter Number of Seats in the Car: ");
+        int numSeats = scanner.nextInt();
+
+        Car car = new Car(brand, rentalRate, numSeats);
+        vehicles.add(car);
+        System.out.println("New Car added successfully.");
+    }
+
+    private static void addNewBicycle(Scanner scanner, ArrayList<Vehicle> vehicles) {
+        System.out.print("Enter Bicycle brand: ");
+        String brand = scanner.next();
+        System.out.print("Enter Rental Rate for Bicycle per hour: ");
+        double rentalRate = scanner.nextDouble();
+        System.out.print("Enter Type of Bicycle (e.g., mountain bike, road bike): ");
+        String type = scanner.next();
+
+        Bicycle bicycle = new Bicycle(brand, rentalRate, type);
+        vehicles.add(bicycle);
+        System.out.println("New Bicycle added successfully.");
+    }
+
+    private static void displayAllVehicles(ArrayList<Vehicle> vehicles) {
+        if (vehicles.isEmpty()) {
+            System.out.println("No vehicles available.");
+        } else {
+            System.out.println("Details of all available vehicles:");
+            for (Vehicle vehicle : vehicles) {
+                vehicle.displayDetails();
+                System.out.println();
+            }
+        }
+    }
+
+    private static void rentVehicle(Scanner scanner, ArrayList<Vehicle> vehicles) {
+        displayAllVehicles(vehicles);
+
+        if (vehicles.isEmpty()) {
+            System.out.println("No vehicles available for rent.");
+            return;
+        }
+
+        System.out.print("Enter the Vehicle ID you want to rent: ");
+        int vehicleId = scanner.nextInt();
+        System.out.print("Enter the number of hours for rent: ");
+        int hours = scanner.nextInt();
+
+        Vehicle selectedVehicle = findVehicleById(vehicleId, vehicles);
+
+        if (selectedVehicle != null) {
+            double totalCost = selectedVehicle.calculateRentalCost(hours);
+            System.out.println("Rental Details:");
+            selectedVehicle.displayDetails();
+            System.out.println("Rental Duration: " + hours + " hours");
+            System.out.println("Total Cost: $" + totalCost);
+        } else {
+            System.out.println("Invalid Vehicle ID. No vehicle found.");
+        }
+    }
+
+    private static Vehicle findVehicleById(int id, ArrayList<Vehicle> vehicles) {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.id == id) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+}
+
+
