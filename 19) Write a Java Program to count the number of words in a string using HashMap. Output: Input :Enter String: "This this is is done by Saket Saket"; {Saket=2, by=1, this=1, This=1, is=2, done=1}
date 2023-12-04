@@ -1,0 +1,40 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class WordCount {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read a string from the user
+        System.out.print("Enter String: ");
+        String inputString = scanner.nextLine();
+
+        // Process the string and count words using a HashMap
+        Map<String, Integer> wordCountMap = countWords(inputString);
+
+        // Print the result
+        System.out.println(wordCountMap);
+
+        scanner.close();
+    }
+
+    // Method to count words in a string using HashMap
+    private static Map<String, Integer> countWords(String inputString) {
+        Map<String, Integer> wordCountMap = new HashMap<>();
+
+        // Split the string into words
+        String[] words = inputString.split("\\s+");
+
+        // Count the occurrence of each word
+        for (String word : words) {
+            // Convert the word to lowercase to make it case-insensitive
+            word = word.toLowerCase();
+
+            // Update the count in the HashMap
+            wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+        }
+
+        return wordCountMap;
+    }
+}
