@@ -1,0 +1,41 @@
+
+public class SegregateZerosAndOnes {
+    public static void main(String[] args) {
+        int[] array = {0, 1, 0, 1, 1, 0, 0, 1, 0};
+
+        // Call the segregate method
+        segregateZerosAndOnes(array);
+
+        // Display the segregated array
+        System.out.println("Segregated Array:");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+
+    // Method to segregate 0s on the left and 1s on the right
+    private static void segregateZerosAndOnes(int[] array) {
+        int low = 0;
+        int high = array.length - 1;
+
+        while (low < high) {
+            while (array[low] == 0 && low < high) {
+                low++;
+            }
+
+            while (array[high] == 1 && low < high) {
+                high--;
+            }
+
+            if (low < high) {
+                // Swap array[low] and array[high]
+                int temp = array[low];
+                array[low] = array[high];
+                array[high] = temp;
+
+                low++;
+                high--;
+            }
+        }
+    }
+}
