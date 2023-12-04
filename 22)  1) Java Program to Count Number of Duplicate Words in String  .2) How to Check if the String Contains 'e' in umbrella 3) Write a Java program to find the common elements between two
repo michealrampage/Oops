@@ -1,0 +1,77 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class CountDuplicateWords {
+    public static void main(String[] args) {
+        String inputString = "Java is a programming language. Java is used for web development. Java is versatile.";
+
+        // Split the input string into words
+        String[] words = inputString.split("\\s+");
+
+        // Create a HashMap to store word frequencies
+        Map<String, Integer> wordFrequencyMap = new HashMap<>();
+
+        // Count the frequency of each word
+        for (String word : words) {
+            word = word.toLowerCase();
+            wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + 1);
+        }
+
+        // Display the duplicate words and their frequencies
+        System.out.println("Duplicate Words and Their Frequencies:");
+        for (Map.Entry<String, Integer> entry : wordFrequencyMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey() + ": " + entry.getValue() + " times");
+            }
+        }
+    }
+}
+
+How to Check if the String Contains 'e' in umbrella:
+public class CheckStringContains {
+    public static void main(String[] args) {
+        String word = "umbrella";
+
+        // Check if the string contains 'e'
+        if (word.contains("e")) {
+            System.out.println("The string contains 'e'");
+        } else {
+            System.out.println("The string does not contain 'e'");
+        }
+    }
+}
+
+Write a Java program to find the common elements between two arrays of integers:
+import java.util.HashSet;
+import java.util.Set;
+
+public class CommonElementsInArrays {
+    public static void main(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {3, 4, 5, 6, 7};
+
+        // Find common elements using a HashSet
+        Set<Integer> commonElements = new HashSet<>();
+        for (int num : array1) {
+            if (contains(array2, num)) {
+                commonElements.add(num);
+            }
+        }
+
+        // Display common elements
+        System.out.println("Common Elements:");
+        for (int element : commonElements) {
+            System.out.println(element);
+        }
+    }
+
+    // Helper method to check if an array contains a specific element
+    private static boolean contains(int[] array, int element) {
+        for (int num : array) {
+            if (num == element) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
