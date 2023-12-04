@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+// Interface to represent the common behavior of all vehicles
+interface Vehicle {
+    void move();
+}
+
+// Concrete class representing a Helicopter
+class Helicopter implements Vehicle {
+    @Override
+    public void move() {
+        System.out.println("The Helicopter Flies in the Air.");
+    }
+}
+
+// Concrete class representing a Car
+class Car implements Vehicle {
+    @Override
+    public void move() {
+        System.out.println("The Car Drives on the Road.");
+    }
+}
+
+// Concrete class representing a Train
+class Train implements Vehicle {
+    @Override
+    public void move() {
+        System.out.println("The Train Runs on the Track.");
+    }
+}
